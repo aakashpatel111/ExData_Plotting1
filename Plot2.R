@@ -1,0 +1,11 @@
+#setwd("E:\\Coursera\\Exploratory Data Analysis\\Course Project 1")
+epc<-read.csv2("household_power_consumption.txt", colClasses="character")
+z=(epc[,1] == "2/2/2007" | epc[,1] == "1/2/2007")
+epc<-subset(epc,z)
+epc[,3]<-as.numeric(epc[,3])
+datetime <- strptime( paste(epc$Date,epc$Time), format="%d/%m/%Y %H:%M:%S")
+with(epc, plot(datetime, Global_active_power, type="l",xlab="",ylab="Global Active Power"))
+
+png("Plot2.png")
+with(epc, plot(datetime, Global_active_power, type="l",xlab="",ylab="Global Active Power"))
+dev.off()
